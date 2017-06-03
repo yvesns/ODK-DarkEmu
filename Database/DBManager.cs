@@ -13,7 +13,12 @@ namespace Database
 
         public static void Initialize()
         {
-            string connstr = "Server=127.0.0.1;Database=darkemu;Uid=root;Pwd=123456;";
+            Console.Write("Database user: ");
+            string user = Console.ReadLine();
+            Console.Write("Database password: ");
+            string password = Console.ReadLine();
+
+            string connstr = "Server=127.0.0.1;Database=darkemu;Uid="+user+";Pwd="+password+";";
             mysqlconn = new MySqlConnection(connstr);
             mysqlconn.Open();
         }
@@ -357,11 +362,11 @@ namespace Database
                 // slot
                 // result.Slot = (Slot)Enum.Parse(typeof(Slot), datareader.GetString((int)TVampire.Slot));
 
-                // alignment
-                result.Alignment = datareader.GetInt32((int)TVampire.Alignment);
-
                 // sex
                 result.Sex = (Sex)Enum.Parse(typeof(Sex), datareader.GetString((int)TVampire.Sex));
+
+                // alignment
+                result.Alignment = datareader.GetInt32((int)TVampire.Alignment);
 
                 // colors
                 result.BatColor = datareader.GetUInt16((int)TVampire.BatColor);
